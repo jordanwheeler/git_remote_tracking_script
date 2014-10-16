@@ -1,0 +1,11 @@
+#! /bin/bash
+cd /data/wiki/root/.git
+git fetch github
+sha=$(cut -c-40 FETCH_HEAD)
+contains=$(git branch --contains ${sha})
+if [ -n "$contains" ]
+then
+  exit 0
+else
+  exit 1
+fi
